@@ -313,6 +313,7 @@ h3 {
 .image-card {
 	border-radius: 2px;
 	width: fit-content;
+    height: fit-content;
 	overflow: hidden;
 	box-shadow: 0 14px 35px rgba(20, 30, 30, 0.12);
 }
