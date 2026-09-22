@@ -1,5 +1,5 @@
 ---
-const action = '/__forms/cloudflare-worker-placeholder';
+const action = '/forms/confirmation/';
 const formName = 'free-quote';
 
 const payrollServices = [
@@ -11,7 +11,7 @@ const payrollServices = [
 ];
 ---
 
-<form class="quote-form" method="post" action={action} data-consent-form="true">
+<form class="quote-form" method="get" action={action} data-consent-form="true">
 	<input type="hidden" name="form-name" value={formName} />
 	<input type="hidden" name="hubspotPortalId" value="47813493" />
 	<input type="hidden" name="hubspotFormId" value="8ad409ca-5f8d-49f8-91e9-d8b55feb67f0" />

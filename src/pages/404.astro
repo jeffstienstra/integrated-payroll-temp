@@ -1,0 +1,19 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ButtonLink from '../components/ButtonLink.astro';
+---
+
+<BaseLayout title="Page Not Found" description="The page you are looking for could not be found.">
+	<section class="section">
+		<div class="container centered">
+			<h1>Page Not Found</h1>
+			<p>The page you are looking for may have moved, or the link may no longer be active.</p>
+			<p>If you need payroll support, forms, login links, or contact information, use the links below to get back on track.</p>
+			<div class="button-row">
+				<ButtonLink href="/" text="Return Home" />
+				<ButtonLink href="/payroll-resources/" text="Forms & Links" />
+				<ButtonLink href="/contact-us/" text="Contact Us" />
+			</div>
+		</div>
+	</section>
+</BaseLayout>

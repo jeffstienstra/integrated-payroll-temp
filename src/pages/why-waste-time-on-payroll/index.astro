@@ -1,10 +1,62 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import PageHero from '../../components/PageHero.astro';
-import StaticForm from '../../components/StaticForm.astro';
 ---
 
 <BaseLayout title="Streamline Your Payroll Process." description="Save time, ensure compliance, and focus on growth with Integrated Payroll.">
-	<PageHero title="Streamline Your Payroll Process" subtitle="Save time, ensure compliance, and focus on growth." />
-	<section class="section"><div class="container split"><div><h2>Your Time Should Drive Growth, Not Paperwork</h2><p>You did not start your business to become a part-time payroll manager. With Integrated Payroll, you can hand off those risks and reclaim your focus.</p><h2>Payroll That Pays You Back</h2><p>No more late nights trying to fix tax codes. No more worrying if checks were processed on time. Just predictable, reliable payroll that works.</p></div><StaticForm formName="payroll-assessment" /></div></section>
+	<PageHero title="Streamline Your Payroll Process." />
+	<section class="section">
+		<div class="container post-content">
+			<div class="video-embed">
+				<iframe src="https://www.youtube.com/embed/efmi1FPXCMo" title="Streamline Your Payroll Process" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+			</div>
+			<h2>Great choice today! You are moments away from personalized support (yes, from a real person who knows your business).</h2>
+
+			<h2>Streamline Your Payroll Process with Integrated Payroll, Save Time, Ensure Compliance, and Focus on Growth.</h2>
+			<p>You didn’t start your business to become a part-time payroll manager. Yet somehow, your evenings are filled with tax filings, direct deposits, and tracking down onboarding forms. Sound familiar?</p>
+			<p>At <strong>Integrated Payroll</strong>, we believe your time is too valuable to be spent buried in spreadsheets or scrambling to meet payroll deadlines. That’s why we exist — to simplify payroll, ensure compliance, and give you back the hours you need to actually <em>run your business.</em></p>
+
+			<h2>Your Time Should Drive Growth — Not Paperwork</h2>
+			<p>Every hour you spend navigating payroll software or correcting paycheck errors is time not spent on strategy, sales, team development, or serving your customers.</p>
+			<p>And the truth is, payroll mistakes don’t just waste time — they cost you.</p>
+			<p>Missed tax deadlines? That’s a penalty.<br />Incorrect withholdings? That’s a compliance risk.<br />Confused employees over paycheck errors? That’s trust eroded.</p>
+			<p>With Integrated Payroll, you can hand off those risks and reclaim your focus.</p>
+
+			<h2>Payroll That Pays You Back</h2>
+			<p>At Integrated Payroll, we don’t just save you time — we help you move faster and smarter. You’ll finally have the freedom to focus on what truly matters: growing your business, serving your clients, and leading your team.</p>
+			<ul>
+				<li>No more late nights trying to fix tax codes.</li>
+				<li>No more worrying if checks were processed on time.</li>
+				<li>Just predictable, reliable payroll that <em>works</em>.</li>
+			</ul>
+
+			<h2>Get Your Free Payroll Assessment Now</h2>
+			<form class="quote-form" method="get" action="/forms/confirmation/">
+				<input type="hidden" name="form-name" value="payroll-assessment" />
+				<div class="form-grid">
+					<div class="form-field">
+						<label for="assessment-email">Email*</label>
+						<input id="assessment-email" name="email" type="email" autocomplete="email" required />
+					</div>
+					<div class="form-field">
+						<label for="assessment-first-name">First name*</label>
+						<input id="assessment-first-name" name="firstname" autocomplete="given-name" required />
+					</div>
+					<div class="form-field">
+						<label for="assessment-company-name">Company name*</label>
+						<input id="assessment-company-name" name="company" autocomplete="organization" required />
+					</div>
+					<div class="form-field">
+						<label for="assessment-number-employees">Number of employees*</label>
+						<input id="assessment-number-employees" name="number_of_employees" required />
+					</div>
+					<div class="form-field form-field--full">
+						<label for="assessment-payroll-frequency">Payroll Frequency*</label>
+						<input id="assessment-payroll-frequency" name="payroll_frequency" required />
+					</div>
+				</div>
+				<p><button class="cta-button" type="submit">Submit</button></p>
+			</form>
+		</div>
+	</section>
 </BaseLayout>

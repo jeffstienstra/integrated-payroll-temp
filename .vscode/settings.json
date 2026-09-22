@@ -7,6 +7,10 @@
         "/^node - <<'NODE'\nimport \\{ blogPosts \\} from '\\./src/data/blog\\.ts';\n\nlet allMatch = true;\nfor \\(const localPost of blogPosts\\) \\{\n  const url = `https://www\\.integratedpayroll\\.us/wp-json/wp/v2/posts\\?slug=\\$\\{encodeURIComponent\\(localPost\\.slug\\)\\}&_fields=content`;\n  const res = await fetch\\(url\\);\n  if \\(!res\\.ok\\) throw new Error\\(`\\$\\{localPost\\.slug\\}: \\$\\{res\\.status\\} \\$\\{res\\.statusText\\}`\\);\n  const \\[remotePost\\] = await res\\.json\\(\\);\n  const remote = remotePost\\.content\\.rendered;\n  const matches = localPost\\.content === remote;\n  allMatch &&= matches;\n  console\\.log\\(`\\$\\{matches \\? 'MATCH' : 'MISMATCH'\\} \\$\\{localPost\\.slug\\} local=\\$\\{localPost\\.content\\.length\\} remote=\\$\\{remote\\.length\\}`\\);\n\\}\nconsole\\.log\\(`All exact content matches: \\$\\{allMatch\\}`\\);\nif \\(!allMatch\\) process\\.exit\\(1\\);\nNODE$/": {
             "approve": true,
             "matchCommandLine": true
+        },
+        "/^node - <<'NODE'\nconst slugs = \\['about-us', 'why-waste-time-on-payroll', 'michigan-pto-compliance'\\];\nfor \\(const slug of slugs\\) \\{\n  const url = `https://www\\.integratedpayroll\\.us/wp-json/wp/v2/pages\\?slug=\\$\\{slug\\}&_fields=title,content,featured_media,slug`;\n  const res = await fetch\\(url\\);\n  if \\(!res\\.ok\\) throw new Error\\(`\\$\\{slug\\}: \\$\\{res\\.status\\} \\$\\{res\\.statusText\\}`\\);\n  const \\[page\\] = await res\\.json\\(\\);\n  console\\.log\\(`\\\\n--- \\$\\{slug\\} ---`\\);\n  console\\.log\\(JSON\\.stringify\\(\\{ title: page\\.title\\.rendered, featured_media: page\\.featured_media, content: page\\.content\\.rendered \\}, null, 2\\)\\);\n\\}\nNODE$/": {
+            "approve": true,
+            "matchCommandLine": true
         }
     }
 }

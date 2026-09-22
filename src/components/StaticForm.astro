@@ -6,18 +6,18 @@ type Props = {
 };
 
 const { formName, compact = false, requireConsent = false } = Astro.props;
-const action = '/__forms/cloudflare-worker-placeholder';
+const action = '/forms/confirmation/';
 ---
 
 {compact ? (
-	<form class="newsletter" method="post" action={action}>
+	<form class="newsletter" method="get" action={action}>
 		<input type="hidden" name="form-name" value={formName} />
 		<label class="sr-only" for={`${formName}-email`}>Email</label>
 		<input id={`${formName}-email`} name="email" type="email" placeholder="Email address" required />
 		<button class="cta-button" type="submit">Go</button>
 	</form>
 ) : (
-	<form method="post" action={action} data-consent-form={requireConsent ? 'true' : undefined}>
+	<form method="get" action={action} data-consent-form={requireConsent ? 'true' : undefined}>
 		<input type="hidden" name="form-name" value={formName} />
 		<div class="form-grid">
 			<div class="form-field">
