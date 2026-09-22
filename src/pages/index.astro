@@ -1,10 +1,11 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import ButtonLink from '../components/ButtonLink.astro';
+import heroImage from '../assets/images/traverse-bay-boat-2.jpg';
 ---
 
 <BaseLayout title="Home" description="Payroll handled by people you know and trust in Traverse City and Northern Michigan.">
-	<section class="hero-panel">
+	<section class="hero-panel hero-panel--image" style={`background-image: linear-gradient(135deg, rgba(37, 37, 37, 0.85), rgba(37, 37, 37, 0.95)), url(${heroImage.src});`}>
 		<div>
 			<h1>Payroll handled by people you know and trust</h1>
 			<p>Integrated Payroll is based in Traverse City, built around relationships with accountants, advisors, and businesses across Northern Michigan.</p>
@@ -40,20 +41,4 @@ import ButtonLink from '../components/ButtonLink.astro';
 			</div>
 		</div>
 	</section>
-</BaseLayout>---
-
----
-
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+</BaseLayout>

@@ -244,6 +244,13 @@ h3 {
 	text-align: center;
 }
 
+.hero-panel--image {
+	min-height: clamp(360px, 52vw, 590px);
+	background-position: bottom;
+	background-size: cover;
+	background-repeat: no-repeat;
+}
+
 .hero-panel h1,
 .hero-panel p {
 	color: #fff;
