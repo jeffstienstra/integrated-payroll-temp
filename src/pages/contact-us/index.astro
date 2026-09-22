@@ -1,0 +1,19 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PageHero from '../../components/PageHero.astro';
+import StaticForm from '../../components/StaticForm.astro';
+---
+
+<BaseLayout title="Contact Us" description="Contact Integrated Payroll in Traverse City, Michigan.">
+	<PageHero title="How can we help? Let's work together." />
+	<section class="section">
+		<div class="container split">
+			<div>
+				<h2>We'd love to hear from you</h2>
+				<p>If you have questions, concerns, or comments to share, contact us by calling, emailing, or stopping by.</p>
+				<p>732 Hannah Avenue, Traverse City MI, 49686<br />Phone: 231-935-0225<br />Fax: 231-935-1483<br />info@integratedpayroll.us<br />Everyday 8:00 am - 5:00 pm</p>
+			</div>
+			<StaticForm formName="contact" requireConsent />
+		</div>
+	</section>
+</BaseLayout>

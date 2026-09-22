@@ -1,0 +1,38 @@
+---
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import '../styles/global.css';
+
+type Props = {
+	title: string;
+	description?: string;
+	ogImage?: string;
+};
+
+const { title, description = 'Payroll services in Traverse City and Northern Michigan, handled by people you know and trust.', ogImage = '/assets/integrated_logo_footer.png' } = Astro.props;
+const pageTitle = title === 'Integrated' ? title : `${title} - Integrated`;
+const canonical = new URL(Astro.url.pathname, 'https://www.integratedpayroll.us').toString();
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width" />
+		<meta name="generator" content={Astro.generator} />
+		<link rel="icon" href="/favicon.ico" />
+		<title>{pageTitle}</title>
+		<meta name="description" content={description} />
+		<link rel="canonical" href={canonical} />
+		<meta property="og:title" content={pageTitle} />
+		<meta property="og:description" content={description} />
+		<meta property="og:image" content={new URL(ogImage, 'https://www.integratedpayroll.us').toString()} />
+	</head>
+	<body>
+		<Header currentPath={Astro.url.pathname} />
+		<main>
+			<slot />
+		</main>
+		<Footer />
+	</body>
+</html>

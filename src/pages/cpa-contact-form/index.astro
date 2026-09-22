@@ -1,0 +1,20 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PageHero from '../../components/PageHero.astro';
+import StaticForm from '../../components/StaticForm.astro';
+---
+
+<BaseLayout title="CPA contact form" description="A payroll partner CPAs and advisors can feel confident referring.">
+	<PageHero title="A payroll partner you can feel confident referring" />
+	<section class="section">
+		<div class="container split">
+			<div>
+				<p>Most of the conversations that start here come from a simple place. A client brings up payroll. Maybe something is not being handled the way it should be. Maybe it is creating more follow up than expected.</p>
+				<h2>Start the conversation</h2>
+				<p>If you have a client in mind, or you simply want to understand how we work before making an introduction, fill out the form.</p>
+				<p>No pressure. Just a conversation.</p>
+			</div>
+			<StaticForm formName="cpa-contact" />
+		</div>
+	</section>
+</BaseLayout>

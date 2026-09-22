@@ -1,0 +1,23 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PageHero from '../../components/PageHero.astro';
+import FreeQuoteForm from '../../components/FreeQuoteForm.astro';
+---
+
+<BaseLayout title="Free Quote" description="Request a free payroll quote from Integrated Payroll.">
+	<PageHero title="Focus on Running Your Business, Let Integrated Payroll Handle the Payroll" subtitle="Take back your valuable time." />
+	<section class="section">
+		<div class="container">
+			<div>
+				<h2>We Do The Heavy Lifting For You.</h2>
+				<div class="image-card">
+					<img src="/assets/IP-social-post-01242025.jpg" alt="Let Integrated Payroll handle the payroll and take back your valuable time" width="1200" height="678" />
+				</div>
+				<p>As a business owner, your focus should be on driving growth and building success, not on the complexities of payroll management.</p>
+                <p>At Integrated Payroll, we take the burden off your shoulders, delivering comprehensive, reliable, and efficient payroll solutions that allow you to dedicate more time to what matters most—running and expanding your business.</p>
+				<p>Your information is secure with us. The details you provide will be used solely for quoting purposes and will not be sold or shared with any third parties. We are committed to protecting your privacy.</p>
+			</div>
+			<FreeQuoteForm />
+		</div>
+	</section>
+</BaseLayout>

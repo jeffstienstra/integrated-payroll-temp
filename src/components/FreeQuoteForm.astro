@@ -1,0 +1,111 @@
+---
+const action = '/__forms/cloudflare-worker-placeholder';
+const formName = 'free-quote';
+
+const payrollServices = [
+	'Employee Payroll',
+	'Employee Onboarding',
+	'Time Keeping',
+	'401k Retirement Reporting',
+	'Compliance Services',
+];
+---
+
+<form class="quote-form" method="post" action={action} data-consent-form="true">
+	<input type="hidden" name="form-name" value={formName} />
+	<input type="hidden" name="hubspotPortalId" value="47813493" />
+	<input type="hidden" name="hubspotFormId" value="8ad409ca-5f8d-49f8-91e9-d8b55feb67f0" />
+
+	<fieldset class="form-section">
+		<legend>Personal Information</legend>
+		<div class="form-grid">
+			<div class="form-field">
+				<label for="free-quote-firstname">First name*</label>
+				<input id="free-quote-firstname" name="firstname" autocomplete="given-name" required />
+			</div>
+			<div class="form-field">
+				<label for="free-quote-lastname">Last name*</label>
+				<input id="free-quote-lastname" name="lastname" autocomplete="family-name" required />
+			</div>
+			<div class="form-field">
+				<label for="free-quote-email">Email*</label>
+				<input id="free-quote-email" name="email" type="email" autocomplete="email" required />
+			</div>
+			<div class="form-field">
+				<label for="free-quote-phone">Phone number*</label>
+				<input id="free-quote-phone" name="phone" type="tel" autocomplete="tel" required />
+			</div>
+		</div>
+	</fieldset>
+
+	<fieldset class="form-section">
+		<legend>Company Information</legend>
+		<div class="form-grid">
+			<div class="form-field">
+				<label for="free-quote-company">Company name*</label>
+				<input id="free-quote-company" name="company" autocomplete="organization" required />
+			</div>
+			<div class="form-field">
+				<label for="free-quote-jobtitle">Job title*</label>
+				<input id="free-quote-jobtitle" name="jobtitle" autocomplete="organization-title" required />
+			</div>
+			<div class="form-field form-field--full">
+				<p class="form-label">What specific payroll services are you looking for?</p>
+				<div class="checkbox-group">
+					{payrollServices.map((service) => (
+						<label class="consent-checkbox" for={`service-${service.toLowerCase().replaceAll(' ', '-').replaceAll('401k', '401k')}`}>
+							<input id={`service-${service.toLowerCase().replaceAll(' ', '-').replaceAll('401k', '401k')}`} name="specific_payroll_services" type="checkbox" value={service} />
+							<span>{service}</span>
+						</label>
+					))}
+				</div>
+			</div>
+		</div>
+	</fieldset>
+
+	<fieldset class="form-section">
+		<legend>Current Payroll System</legend>
+		<p class="form-label">Are you currently using a payroll provider?</p>
+		<div class="radio-group">
+			<label class="consent-checkbox" for="free-quote-provider-yes">
+				<input id="free-quote-provider-yes" name="currently_using_payroll_provider" type="radio" value="Yes" required />
+				<span>Yes</span>
+			</label>
+			<label class="consent-checkbox" for="free-quote-provider-no">
+				<input id="free-quote-provider-no" name="currently_using_payroll_provider" type="radio" value="No" required />
+				<span>No</span>
+			</label>
+		</div>
+	</fieldset>
+
+	<div class="consent-disclaimer">
+		<p>Integrated Payroll Services, Inc. is committed to protecting and respecting your privacy, and we’ll only use your personal information to administer your account and to provide the products and services you requested from us. From time to time, we would like to contact you about our products and services, as well as other content that may be of interest to you. If you consent to us contacting you for this purpose, please tick below to say how you would like us to contact you:</p>
+		<label class="consent-checkbox" for="free-quote-communications-consent">
+			<input id="free-quote-communications-consent" data-consent-checkbox name="communications_consent" type="checkbox" value="I agree to receive other communications from Integrated Payroll Services, Inc.." required />
+			<span>I agree to receive other communications from Integrated Payroll Services, Inc..</span>
+		</label>
+		<p>In order to provide you the content requested, we need to store and process your personal data. If you consent to us storing your personal data for this purpose, please tick the checkbox below.</p>
+		<label class="consent-checkbox" for="free-quote-process-consent">
+			<input id="free-quote-process-consent" data-consent-checkbox name="process_personal_data_consent" type="checkbox" value="I agree to allow Integrated Payroll Services, Inc. to store and process my personal data." required />
+			<span>I agree to allow Integrated Payroll Services, Inc. to store and process my personal data.*</span>
+		</label>
+		<p>You can unsubscribe from these communications at any time. For more information on how to unsubscribe, our privacy practices, and how we are committed to protecting and respecting your privacy, please review our <a href="/privacy/">Privacy Policy</a>.</p>
+	</div>
+
+	<p><button class="cta-button" data-consent-submit="true" type="submit" disabled>Submit</button></p>
+</form>
+
+<script is:inline>
+	document.querySelectorAll('[data-consent-form="true"]').forEach((form) => {
+		const checkboxes = Array.from(form.querySelectorAll('[data-consent-checkbox]'));
+		const submit = form.querySelector('[data-consent-submit="true"]');
+		if (!checkboxes.length || !submit) return;
+
+		const syncSubmitState = () => {
+			submit.disabled = !checkboxes.every((checkbox) => checkbox.checked);
+		};
+
+		checkboxes.forEach((checkbox) => checkbox.addEventListener('change', syncSubmitState));
+		syncSubmitState();
+	});
+</script>

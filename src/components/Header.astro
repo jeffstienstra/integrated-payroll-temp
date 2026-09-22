@@ -1,0 +1,65 @@
+---
+type Props = {
+	currentPath: string;
+};
+
+const { currentPath } = Astro.props;
+const navItems = [
+	{ href: '/', label: 'Home' },
+	{ href: '/about-us/', label: 'About' },
+	{ href: '/solutions/', label: 'Solutions' },
+	{ href: '/contact-us/', label: 'Contact Us' },
+	{ href: '/free-quote/', label: 'Get a Free Quote', isCta: true },
+	{ href: '/blog/', label: 'Blog' },
+];
+
+const formsLinksItems = [
+	{ href: '/payroll-resources/', label: 'Payroll Resources' },
+	{ href: 'https://www.cyberpayonline.com/', label: 'CyberPay Online Login', external: true },
+	{ href: 'http://ipspayroll.payrollservers.info/', label: 'SwipeClock Login', external: true },
+	{ href: 'https://www.eftps.gov/eftps/login/loginInitial', label: 'EFTPS Login', external: true },
+];
+---
+
+<header class="site-header">
+	<div class="site-header__inner container">
+		<a class="site-logo" href="/" aria-label="Integrated Payroll home">
+			<img src="/assets/inline_transparent_logo.png" alt="Integrated Payroll" width="645" height="102" />
+		</a>
+		<button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav">
+			<span class="menu-toggle__bar"></span>
+			<span class="menu-toggle__bar"></span>
+			<span class="menu-toggle__bar"></span>
+			<span class="sr-only">Menu</span>
+		</button>
+		<nav id="site-nav" class="site-nav" aria-label="Primary navigation">
+			{navItems.slice(0, 3).map((item) => (
+				<a class:list={{ 'site-nav__cta': item.isCta }} href={item.href} aria-current={currentPath === item.href ? 'page' : undefined}>{item.label}</a>
+			))}
+			<details class="site-nav__dropdown">
+				<summary class:list={{ 'is-active': currentPath === '/payroll-resources/' }}>Forms &amp; Links</summary>
+				<div class="site-nav__dropdown-menu">
+					{formsLinksItems.map((item) => (
+						<a href={item.href} target={item.external ? '_blank' : undefined} rel={item.external ? 'noopener noreferrer' : undefined}>{item.label}</a>
+					))}
+				</div>
+			</details>
+			{navItems.slice(3).map((item) => (
+				<a class:list={{ 'site-nav__cta': item.isCta }} href={item.href} aria-current={currentPath === item.href ? 'page' : undefined}>{item.label}</a>
+			))}
+		</nav>
+	</div>
+</header>
+
+<script is:inline>
+	const menuButton = document.querySelector('.menu-toggle');
+	const siteNav = document.querySelector('#site-nav');
+
+	if (menuButton && siteNav) {
+		menuButton.addEventListener('click', () => {
+			const isOpen = menuButton.getAttribute('aria-expanded') === 'true';
+			menuButton.setAttribute('aria-expanded', String(!isOpen));
+			siteNav.toggleAttribute('data-open', !isOpen);
+		});
+	}
+</script>

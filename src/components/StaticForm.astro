@@ -1,0 +1,78 @@
+---
+type Props = {
+	formName: string;
+	compact?: boolean;
+	requireConsent?: boolean;
+};
+
+const { formName, compact = false, requireConsent = false } = Astro.props;
+const action = '/__forms/cloudflare-worker-placeholder';
+---
+
+{compact ? (
+	<form class="newsletter" method="post" action={action}>
+		<input type="hidden" name="form-name" value={formName} />
+		<label class="sr-only" for={`${formName}-email`}>Email</label>
+		<input id={`${formName}-email`} name="email" type="email" placeholder="Email address" required />
+		<button class="cta-button" type="submit">Go</button>
+	</form>
+) : (
+	<form method="post" action={action} data-consent-form={requireConsent ? 'true' : undefined}>
+		<input type="hidden" name="form-name" value={formName} />
+		<div class="form-grid">
+			<div class="form-field">
+				<label for={`${formName}-first-name`}>First Name</label>
+				<input id={`${formName}-first-name`} name="firstName" autocomplete="given-name" required />
+			</div>
+			<div class="form-field">
+				<label for={`${formName}-last-name`}>Last Name</label>
+				<input id={`${formName}-last-name`} name="lastName" autocomplete="family-name" required />
+			</div>
+			<div class="form-field">
+				<label for={`${formName}-email`}>Email</label>
+				<input id={`${formName}-email`} name="email" type="email" autocomplete="email" required />
+			</div>
+			<div class="form-field">
+				<label for={`${formName}-phone`}>Phone</label>
+				<input id={`${formName}-phone`} name="phone" type="tel" autocomplete="tel" />
+			</div>
+			<div class="form-field form-field--full">
+				<label for={`${formName}-company`}>Company</label>
+				<input id={`${formName}-company`} name="company" autocomplete="organization" />
+			</div>
+			<div class="form-field form-field--full">
+				<label for={`${formName}-message`}>Message</label>
+				<textarea id={`${formName}-message`} name="message"></textarea>
+			</div>
+		</div>
+		{requireConsent && (
+			<div class="consent-disclaimer">
+				<p>Integrated Payroll Services, Inc. is committed to protecting and respecting your privacy, and we’ll only use your personal information to administer your account and to provide the products and services you requested from us. From time to time, we would like to contact you about our products and services, as well as other content that may be of interest to you. If you consent to us contacting you for this purpose, please tick below to say how you would like us to contact you:</p>
+				<label class="consent-checkbox" for={`${formName}-communications-consent`}>
+					<input id={`${formName}-communications-consent`} data-consent-checkbox name="communicationsConsent" type="checkbox" value="yes" required />
+					<span>I agree to receive other communications from Integrated Payroll Services, Inc..</span>
+				</label>
+				<p>You can unsubscribe from these communications at any time. For more information on how to unsubscribe, our privacy practices, and how we are committed to protecting and respecting your privacy, please review our <a href="/privacy/">Privacy Policy</a>.</p>
+				<p>By clicking submit below, you consent to allow Integrated Payroll Services, Inc. to store and process the personal information submitted above to provide you the content requested.</p>
+			</div>
+		)}
+		<p><button class="cta-button" data-consent-submit={requireConsent ? 'true' : undefined} type="submit" disabled={requireConsent}>Submit</button></p>
+	</form>
+)}
+
+{requireConsent && (
+	<script is:inline>
+		document.querySelectorAll('[data-consent-form="true"]').forEach((form) => {
+			const checkbox = form.querySelector('[data-consent-checkbox]');
+			const submit = form.querySelector('[data-consent-submit="true"]');
+			if (!checkbox || !submit) return;
+
+			const syncSubmitState = () => {
+				submit.disabled = !checkbox.checked;
+			};
+
+			checkbox.addEventListener('change', syncSubmitState);
+			syncSubmitState();
+		});
+	</script>
+)}
