@@ -20,7 +20,7 @@ const { post } = Astro.props;
 	<PageHero title={post.title} subtitle={`Posted on ${formatPostDate(post.date)}`} />
 	<section class="section">
 		<article class="container post-content">
-			<img src={post.image} alt="" width="848" height="479" />
+			{!post.content.includes('<img') && <img src={post.image} alt="" width="848" height="479" />}
 			<Fragment set:html={post.content} />
 		</article>
 	</section>

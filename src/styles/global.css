@@ -492,6 +492,14 @@ textarea {
 	gap: 2.25rem;
 }
 
+.blog-list a {
+    color: var(--color-ink);
+}
+
+.blog-list a:hover {
+    color: var(--color-green);
+}
+
 .blog-card {
 	display: grid;
 	grid-template-columns: 260px 1fr;
@@ -504,6 +512,14 @@ textarea {
 .blog-card h2 {
 	margin-top: 0;
 	font-size: clamp(1.45rem, 2.4vw, 2.25rem);
+}
+
+.post-content a {
+    color: var(--color-ink);
+}
+
+.post-content a:hover {
+    color: var(--color-green);
 }
 
 .post-content {
