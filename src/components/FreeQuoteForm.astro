@@ -54,11 +54,11 @@ const payrollServices = [
 				<input id="free-quote-jobtitle" name="jobtitle" autocomplete="organization-title" required />
 			</div>
 			<div class="form-field form-field--full">
-				<p class="form-label">What specific payroll services are you looking for? *</p>
+				<p class="form-label">What specific payroll services are you looking for?</p>
 				<div class="checkbox-group">
 					{payrollServices.map((service) => (
 						<label class="consent-checkbox" for={`service-${service.toLowerCase().replaceAll(' ', '-').replaceAll('401k', '401k')}`}>
-							<input id={`service-${service.toLowerCase().replaceAll(' ', '-').replaceAll('401k', '401k')}`} name="specific_payroll_services" type="checkbox" value={service} required/>
+							<input id={`service-${service.toLowerCase().replaceAll(' ', '-').replaceAll('401k', '401k')}`} name="specific_payroll_services" type="checkbox" value={service}/>
 							<span>{service}</span>
 						</label>
 					))}
