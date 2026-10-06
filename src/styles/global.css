@@ -575,7 +575,7 @@ textarea {
 }
 
 .newsletter {
-	display: flex;
+	display: block;
 	gap: 0.5rem;
 }
 

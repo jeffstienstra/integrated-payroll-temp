@@ -31,8 +31,8 @@ import PageHero from '../../components/PageHero.astro';
 			</ul>
 
 			<h2>Get Your Free Payroll Assessment Now</h2>
-			<form class="quote-form" method="get" action="/forms/confirmation/">
-				<input type="hidden" name="form-name" value="payroll-assessment" />
+			<form id="integrated-payroll-payroll-assessment-form" class="quote-form" method="post" action="https://contact-form-handler.jeffstienstra.workers.dev/" data-turnstile-form>
+				<input type="hidden" name="form_id" value="integrated-payroll-payroll-assessment-form" />
 				<div class="form-grid">
 					<div class="form-field">
 						<label for="assessment-email">Email*</label>
@@ -55,7 +55,13 @@ import PageHero from '../../components/PageHero.astro';
 						<input id="assessment-payroll-frequency" name="payroll_frequency" required />
 					</div>
 				</div>
-				<p><button class="cta-button" type="submit">Submit</button></p>
+				<div
+					class="cf-turnstile"
+					data-sitekey="0x4AAAAAAFAELe3EuzAg-M4l"
+					data-callback="javascriptCallback"
+					data-expired-callback="javascriptExpiredCallback"
+				></div>
+				<p><button class="cta-button" data-turnstile-submit type="submit" disabled>Submit</button></p>
 			</form>
 		</div>
 	</section>

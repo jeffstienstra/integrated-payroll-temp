@@ -1,0 +1,18 @@
+---
+const action = 'https://contact-form-handler.jeffstienstra.workers.dev/';
+---
+
+<form id="integrated-payroll-newsletter-form" class="newsletter" method="post" action={action} data-turnstile-form>
+	<div>
+        <input type="hidden" name="form_id" value="integrated-payroll-newsletter-form" />
+        <label class="sr-only" for="newsletter-email">Email</label>
+        <input id="newsletter-email" name="email" type="email" placeholder="Email address" required />
+        </div>
+	<div
+		class="cf-turnstile"
+		data-sitekey="0x4AAAAAAFAELe3EuzAg-M4l"
+		data-callback="javascriptCallback"
+		data-expired-callback="javascriptExpiredCallback"
+	></div>
+	<button class="cta-button" data-turnstile-submit type="submit" disabled>Subscribe</button>
+</form>

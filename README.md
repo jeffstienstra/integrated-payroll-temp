@@ -15,7 +15,7 @@ The workspace currently expects Node `>=22.12.0`; it was scaffolded with Node `2
 
 ## Forms
 
-Forms are static HTML and currently post to `/__forms/cloudflare-worker-placeholder`. Replace that placeholder action in `src/components/StaticForm.astro` when the Cloudflare Worker endpoint is ready. Each form includes a hidden `form-name` field.
+Forms are static HTML and currently post to `/__forms/cloudflare-worker-placeholder`. Replace that placeholder action in `src/components/StaticForm.astro` when the Cloudflare Worker endpoint is ready. Each form includes a hidden `form_id` field.
 
 ## Removed Images
 

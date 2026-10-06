@@ -73,6 +73,18 @@ const schema = {
 <html lang="en">
 	<head>
 		<meta charset="utf-8" />
+		<script is:inline>
+			if ('serviceWorker' in navigator) {
+				navigator.serviceWorker.getRegistrations()
+					.then((registrations) => Promise.all(registrations.map((registration) => registration.unregister())))
+					.catch((error) => console.error('Service worker cleanup failed:', error));
+			}
+			if ('caches' in window) {
+				caches.keys()
+					.then((names) => Promise.all(names.map((name) => caches.delete(name))))
+					.catch((error) => console.error('Cache cleanup failed:', error));
+			}
+		</script>
 		<meta name="viewport" content="width=device-width" />
 		<meta name="generator" content={Astro.generator} />
 		<link rel="icon" href="/favicon.ico" />
@@ -90,5 +102,34 @@ const schema = {
 			<slot />
 		</main>
 		<Footer />
+		<script is:inline>
+			(function () {
+				function syncTurnstileForms() {
+					document.querySelectorAll('[data-turnstile-form]').forEach(function (form) {
+						var submit = form.querySelector('[data-turnstile-submit]');
+						var response = form.querySelector('input[name="cf-turnstile-response"]');
+						if (!submit || !response) return;
+
+						submit.disabled = !response.value || !form.checkValidity();
+						form.dataset.turnstileVerified = response.value ? 'true' : 'false';
+					});
+				}
+
+				window.javascriptCallback = syncTurnstileForms;
+				window.javascriptExpiredCallback = syncTurnstileForms;
+
+				document.addEventListener('DOMContentLoaded', function () {
+					document.querySelectorAll('[data-turnstile-form]').forEach(function (form) {
+						form.addEventListener('input', syncTurnstileForms);
+						form.addEventListener('change', syncTurnstileForms);
+					});
+
+					var turnstileScript = document.createElement('script');
+					turnstileScript.src = 'https://challenges.cloudflare.com/turnstile/v0/api.js';
+					turnstileScript.async = true;
+					document.head.appendChild(turnstileScript);
+				});
+			})();
+		</script>
 	</body>
 </html>
